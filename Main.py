@@ -2,7 +2,6 @@ import os
 import math
 import pandas as pd
 import numpy as np
-import matplotlib.pyplot as plt
 from statsmodels.tsa.statespace.sarimax import SARIMAX
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import mean_absolute_error, mean_squared_error
@@ -76,7 +75,7 @@ print(f"Revenue - Mean Absolute Error: {mae_revenue}")
 print(f"Revenue - Mean Squared Error: {mse_revenue}")
 
 # Plot the actual vs forecasted sales
-plt.figure(figsize=(14, 7))
+'''plt.figure(figsize=(14, 7))
 plt.plot(train['Sales'], label='Training Sales')
 plt.plot(test['Sales'], label='Actual Sales')
 plt.plot(test['Sales Forecast'], label='Forecasted Sales')
@@ -90,7 +89,7 @@ plt.plot(test['Revenue'], label='Actual Revenue')
 plt.plot(test['Revenue Forecast'], label='Forecasted Revenue')
 plt.legend()
 plt.show()
-
+'''
 
 
 # Forecast future values for sales and revenue
@@ -101,7 +100,7 @@ future_forecast_revenue = model_revenue_fit.forecast(steps=12)
 future_dates = pd.date_range(start=test.index[-1], periods=13, freq='M')[1:]
 future_df = pd.DataFrame({'Sales Forecast': future_forecast_sales, 'Revenue Forecast': future_forecast_revenue}, index=future_dates)
 
-# Plot the forecasted sales and revenue
+'''# Plot the forecasted sales and revenue
 plt.figure(figsize=(14, 7))
 plt.plot(monthly_data['Sales'], label='Historical Sales')
 plt.plot(future_df['Sales Forecast'], label='Future Sales Forecast')
@@ -113,7 +112,7 @@ plt.plot(monthly_data['Revenue'], label='Historical Revenue')
 plt.plot(future_df['Revenue Forecast'], label='Future Revenue Forecast')
 plt.legend()
 plt.show()
-
+'''
 
 # Function to forecast based on future date and product code
 def forecast_sales_and_revenue(future_date, product_code):
@@ -137,4 +136,3 @@ forecasted_sales, forecasted_revenue = forecast_sales_and_revenue(future_date, p
 
 print(f"The forecasted sales for {product_code} on {future_date} is {forecasted_sales}")
 print(f"The forecasted revenue for {product_code} on {future_date} is {forecasted_revenue}")
-
